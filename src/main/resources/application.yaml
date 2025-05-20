@@ -12,3 +12,6 @@ spring:
     hibernate:
       ddl-auto: create-drop
     show-sql: true
+openweather:
+  url: https://api.openweathermap.org/data/2.5
+  key: a6a16c2b63141f72e9503604b2ce6cba
