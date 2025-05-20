@@ -9,12 +9,21 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
-    @Bean
-    public WebClient openWeatherMapWebClient(OpenWeatherConfig config) {
+    @Bean(name = "weather")
+    public WebClient openWeatherMapWebClientWeatherData(OpenWeatherConfig config) {
         return WebClient.builder()
-                .baseUrl(config.getUrl())
+                .baseUrl(config.getWeather())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
     }
+
+    @Bean(name = "location")
+    public WebClient openWeatherMapWebClientLocationData(OpenWeatherConfig config) {
+        return WebClient.builder()
+                .baseUrl(config.getLocation())
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+    }
+
 
 }

@@ -13,5 +13,6 @@ spring:
       ddl-auto: create-drop
     show-sql: true
 openweather:
-  url: https://api.openweathermap.org/data/2.5
+  weather: https://api.openweathermap.org/data/2.5/weather
+  location: http://api.openweathermap.org/geo/1.0/direct
   key: a6a16c2b63141f72e9503604b2ce6cba

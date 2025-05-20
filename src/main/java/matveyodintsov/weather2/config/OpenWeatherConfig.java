@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 public class OpenWeatherConfig {
-    private String url;
+    private String weather;
+    private String location;
     private String key;
 }
