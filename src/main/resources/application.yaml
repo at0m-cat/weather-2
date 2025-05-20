@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: weather-2
+  liquibase:
+    enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/weatherdb
+    username: weatheruser
+    password: secret123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
