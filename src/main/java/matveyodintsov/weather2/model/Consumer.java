@@ -1,13 +1,14 @@
 package matveyodintsov.weather2.model;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @EqualsAndHashCode
+@Getter @Setter
+@ToString
 public class Consumer {
 
     @Id

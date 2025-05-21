@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface ConsumerRepo extends JpaRepository<Consumer, Long> {
 
     public Optional<Consumer> findByName(String name);
+    public boolean existsByNameIgnoreCase(String name);
 
 }

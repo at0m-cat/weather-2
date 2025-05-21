@@ -15,9 +15,12 @@ public class LocationController {
     private final LocationService locationService;
 
     @GetMapping()
-    public String getLocations(@RequestParam("loc") String loc, Model model) {
-        var locations = locationService.findLocationsByName(loc);
-        model.addAttribute("locations", locations);
+    public String getLocations(@RequestParam(value = "loc", required = false) String loc, Model model) {
+        if (loc == null || loc.isEmpty()) {
+            model.addAttribute("location", null);
+            return "search-results";
+        }
+        model.addAttribute("locations", locationService.findLocationsByName(loc));
         return "search-results";
     }
 
