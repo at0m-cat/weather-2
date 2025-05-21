@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "openweather")
 @Getter
 @Setter
-public class OpenWeatherConfig {
+public class OpenWeatherClientConfig {
     private String weather;
     private String location;
     private String key;

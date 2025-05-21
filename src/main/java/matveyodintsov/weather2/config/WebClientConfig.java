@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class WebClientConfig {
 
     @Bean(name = "weather")
-    public WebClient openWeatherMapWebClientWeatherData(OpenWeatherConfig config) {
+    public WebClient getOpenWeatherMapWebClientWeatherData(OpenWeatherClientConfig config) {
         return WebClient.builder()
                 .baseUrl(config.getWeather())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -18,7 +18,7 @@ public class WebClientConfig {
     }
 
     @Bean(name = "location")
-    public WebClient openWeatherMapWebClientLocationData(OpenWeatherConfig config) {
+    public WebClient getOpenWeatherMapWebClientLocationData(OpenWeatherClientConfig config) {
         return WebClient.builder()
                 .baseUrl(config.getLocation())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
