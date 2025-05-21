@@ -1,6 +1,6 @@
 package matveyodintsov.weather2.controller;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import matveyodintsov.weather2.dto.LocationDto;
 import matveyodintsov.weather2.service.LocationService;
 import org.springframework.stereotype.Controller;
@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/location")
 public class LocationController {
 

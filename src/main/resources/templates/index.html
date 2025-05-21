@@ -14,10 +14,10 @@
             <img src="../images/weather-app.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
             Weather Tracker
         </a>
-        <div class="d-flex align-items-center">
-            <span class="navbar-text me-3">zhukovsd</span>
-            <button class="btn btn-outline-danger">Sign out</button>
-        </div>
+        <form class="d-flex align-items-center" th:action="@{/auth/logout}" method="post">
+            <span class="navbar-text me-3" th:text="${login}">unknown</span>
+            <button class="btn btn-outline-danger" >Sign out</button>
+        </form>
     </div>
 </nav>
 
