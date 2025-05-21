@@ -1,28 +1,21 @@
 package matveyodintsov.weather2.mapper;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import matveyodintsov.weather2.dto.LocationDto;
-import org.springframework.stereotype.Component;
+import matveyodintsov.weather2.model.Location;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 
-@Component
-public class LocationMapper {
+import java.util.List;
 
-    public LocationDto fromJson(JsonNode node) {
-        return LocationDto.builder()
-                .name(getText(node, "name"))
-                .country(getText(node, "country"))
-                .state(getText(node, "state"))
-                .lat(getDouble(node, "lat"))
-                .lon(getDouble(node, "lon"))
-                .build();
-    }
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public interface LocationMapper {
 
-    private String getText(JsonNode node, String field) {
-        return node.has(field) ? node.get(field).asText() : "";
-    }
+    LocationDto toDto(Location location);
 
-    private double getDouble(JsonNode node, String field) {
-        return node.has(field) ? node.get(field).asDouble() : 0.0;
-    }
+    List<LocationDto> toDto(List<Location> locations);
+
+    Location fromDto(LocationDto locationDto);
+
+    List<Location> fromDto(List<LocationDto> locationDtos);
 
 }

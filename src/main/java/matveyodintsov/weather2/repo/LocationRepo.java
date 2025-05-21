@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LocationRepo extends JpaRepository<Location, Long> {
 
-
+    boolean existsLocationByLonAndLat(double lon, double lat);
 }
