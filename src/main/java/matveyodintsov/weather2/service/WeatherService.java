@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class WeatherService {
@@ -35,9 +36,7 @@ public class WeatherService {
                           OpenWeatherClientConfig openWeatherConfig,
                           WeatherMapper weatherMapper,
                           LocationMapper locationMapper,
-                          WeatherAdapter weatherAdapter,
-                          ConsumerDetailService consumerDetailService,
-                          ApplicationEventPublisher publisher) {
+                          WeatherAdapter weatherAdapter) {
         this.webClient = webClient;
         this.weatherRepo = weatherRepo;
         this.locationRepo = locationRepo;
@@ -45,6 +44,16 @@ public class WeatherService {
         this.weatherMapper = weatherMapper;
         this.locationMapper = locationMapper;
         this.weatherAdapter = weatherAdapter;
+    }
+
+    public List<WeatherDto> getWeatherByAuthenticateUsername(String username) {
+        return weatherRepo.findWeatherByUsername(username).stream()
+                .map(weather -> {
+                    WeatherDto weatherDto = weatherMapper.toWeatherDto(weather);
+                    weatherDto.setLocation(locationMapper.toDto(weather.getLocation()));
+                    return weatherDto;
+                })
+                .collect(Collectors.toList());
     }
 
     public void fetchAndSaveWeatherData(LocationDto locationDto) {

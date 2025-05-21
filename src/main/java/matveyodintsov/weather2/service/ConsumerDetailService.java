@@ -52,14 +52,4 @@ public class ConsumerDetailService implements UserDetailsService {
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
-    public List<WeatherDto> getWeatherByAuthenticateUsername(String username) {
-        return repo.findWeatherByUsername(username).stream()
-                .map(weather -> {
-                    WeatherDto weatherDto = weatherMapper.toWeatherDto(weather);
-                    weatherDto.setLocation(locationMapper.toDto(weather.getLocation()));
-                    return weatherDto;
-                })
-                .collect(Collectors.toList());
-    }
-
 }

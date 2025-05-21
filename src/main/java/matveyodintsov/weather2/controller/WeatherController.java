@@ -19,7 +19,7 @@ public class WeatherController {
     @GetMapping()
     public String index(Model model) {
         String authenticateUsername = consumerDetailService.getConsumerAuthenticatedUsername();
-        var weather = consumerDetailService.getWeatherByAuthenticateUsername(authenticateUsername);
+        var weather = weatherService.getWeatherByAuthenticateUsername(authenticateUsername);
         model.addAttribute("login", authenticateUsername);
         model.addAttribute("weatherData", weather);
         return "index";
