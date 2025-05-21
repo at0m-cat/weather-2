@@ -6,6 +6,7 @@ import matveyodintsov.weather2.mapper.LocationMapper;
 import matveyodintsov.weather2.model.Consumer;
 import matveyodintsov.weather2.repo.ConsumerRepo;
 import matveyodintsov.weather2.repo.LocationRepo;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -18,6 +19,7 @@ public class LocationEventListener {
     private final ConsumerRepo consumerRepo;
     private final LocationRepo locationRepo;
     private final LocationMapper mapper;
+    private final ApplicationEventPublisher publisher;
 
     @Transactional
     @EventListener
@@ -33,5 +35,7 @@ public class LocationEventListener {
 
         user.getLocations().add(location);
         consumerRepo.save(user);
+
+        publisher.publishEvent(new WeatherCreatedEvent(this, dto));
     }
 }

@@ -8,7 +8,6 @@ import matveyodintsov.weather2.event.LocationSavedEvent;
 import matveyodintsov.weather2.mapper.LocationMapper;
 import matveyodintsov.weather2.repo.LocationRepo;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -61,7 +60,8 @@ public class LocationService {
     public void save(LocationDto locationDto) {
         var location = mapper.fromDto(locationDto);
         if (!repo.existsLocationByLonAndLat(location.getLon(), location.getLat())) {
-            repo.save(location);
+            location = repo.save(location);
+            locationDto.setId(location.getId());
         }
 
         publisher.publishEvent(new LocationSavedEvent(this, locationDto));
