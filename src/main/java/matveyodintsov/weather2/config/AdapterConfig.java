@@ -9,12 +9,12 @@ import org.springframework.context.annotation.Configuration;
 public class AdapterConfig {
 
     @Bean
-    public LocationAdapter locationMapper() {
+    public LocationAdapter locationAdapter() {
         return new LocationAdapter();
     }
 
     @Bean
-    public WeatherAdapter weatherMapper() {
+    public WeatherAdapter weatherAdapter() {
         return new WeatherAdapter();
     }
 
