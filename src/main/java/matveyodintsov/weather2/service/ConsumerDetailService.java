@@ -3,7 +3,6 @@ package matveyodintsov.weather2.service;
 import lombok.RequiredArgsConstructor;
 import matveyodintsov.weather2.dto.ConsumerDto;
 import matveyodintsov.weather2.exception.RegistrationException;
-import matveyodintsov.weather2.exception.LoginException;
 import matveyodintsov.weather2.mapper.ConsumerMapper;
 import matveyodintsov.weather2.model.Consumer;
 import matveyodintsov.weather2.repo.ConsumerRepo;
@@ -11,7 +10,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
