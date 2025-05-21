@@ -4,9 +4,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import matveyodintsov.weather2.adapter.LocationAdapter;
 import matveyodintsov.weather2.config.OpenWeatherClientConfig;
 import matveyodintsov.weather2.dto.LocationDto;
+import matveyodintsov.weather2.event.LocationSavedEvent;
 import matveyodintsov.weather2.mapper.LocationMapper;
 import matveyodintsov.weather2.repo.LocationRepo;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -22,17 +25,20 @@ public class LocationService {
     private final LocationAdapter locationAdapter;
     private final LocationRepo repo;
     private final LocationMapper mapper;
+    private final ApplicationEventPublisher publisher;
 
     public LocationService(@Qualifier("location") WebClient webClient,
                            OpenWeatherClientConfig config,
                            LocationAdapter locationAdapter,
                            LocationRepo repo,
-                           LocationMapper mapper) {
+                           LocationMapper mapper,
+                           ApplicationEventPublisher publisher) {
         this.webClient = webClient;
         this.config = config;
         this.locationAdapter = locationAdapter;
         this.repo = repo;
         this.mapper = mapper;
+        this.publisher = publisher;
     }
 
     public List<LocationDto> findLocationsByName(String city) {
@@ -57,6 +63,8 @@ public class LocationService {
         if (!repo.existsLocationByLonAndLat(location.getLon(), location.getLat())) {
             repo.save(location);
         }
+
+        publisher.publishEvent(new LocationSavedEvent(this, locationDto));
     }
 
 }

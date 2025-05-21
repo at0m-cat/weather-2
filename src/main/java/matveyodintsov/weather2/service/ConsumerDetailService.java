@@ -6,6 +6,8 @@ import matveyodintsov.weather2.exception.RegistrationException;
 import matveyodintsov.weather2.mapper.ConsumerMapper;
 import matveyodintsov.weather2.model.Consumer;
 import matveyodintsov.weather2.repo.ConsumerRepo;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,6 +38,10 @@ public class ConsumerDetailService implements UserDetailsService {
             throw new RegistrationException("Username already exists");
         }
         repo.save(mapper.toConsumer(consumerDto));
+    }
+
+    public String getConsumerAuthenticatedUsername() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
 }

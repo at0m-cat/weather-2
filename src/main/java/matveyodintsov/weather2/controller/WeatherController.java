@@ -3,12 +3,12 @@ package matveyodintsov.weather2.controller;
 
 import lombok.AllArgsConstructor;
 import matveyodintsov.weather2.service.WeatherService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping("/weather")
 @AllArgsConstructor
 public class WeatherController {
@@ -17,8 +17,7 @@ public class WeatherController {
 
     @GetMapping()
     public String getWeather(Model model) {
-
-        return "index";
+        return "redirect:/";
     }
 
 }
