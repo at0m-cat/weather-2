@@ -19,7 +19,7 @@ public class LocationController {
 
     @GetMapping()
     public String getLocations(@RequestParam("loc") String loc, Model model) {
-        var locations = locationService.getLocations(loc);
+        var locations = locationService.findLocationsByName(loc);
         model.addAttribute("locations", locations);
         return "search-results";
     }

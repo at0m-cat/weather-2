@@ -1,11 +1,11 @@
-package matveyodintsov.weather2.adapter;
+package matveyodintsov.weather2.mapper;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import matveyodintsov.weather2.dto.LocationDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LocationAdapter {
+public class LocationMapper {
 
     public LocationDto fromJson(JsonNode node) {
         return LocationDto.builder()
