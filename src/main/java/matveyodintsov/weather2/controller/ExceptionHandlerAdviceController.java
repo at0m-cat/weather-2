@@ -1,7 +1,7 @@
 package matveyodintsov.weather2.controller;
 
-import matveyodintsov.weather2.exception.RegistrationException;
 import matveyodintsov.weather2.exception.LoginException;
+import matveyodintsov.weather2.exception.RegistrationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.ui.Model;

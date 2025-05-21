@@ -6,6 +6,7 @@ import matveyodintsov.weather2.config.OpenWeatherClientConfig;
 import matveyodintsov.weather2.dto.LocationDto;
 import matveyodintsov.weather2.event.LocationSavedEvent;
 import matveyodintsov.weather2.mapper.LocationMapper;
+import matveyodintsov.weather2.model.Location;
 import matveyodintsov.weather2.repo.LocationRepo;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationEventPublisher;
@@ -38,6 +39,17 @@ public class LocationService {
         this.repo = repo;
         this.mapper = mapper;
         this.publisher = publisher;
+    }
+
+
+    public void deleteById(Long id) {
+//         if (!repo.existsById(id)) {
+//             throw new IllegalArgumentException("The specified location does not exist");
+//         }
+//
+//         Location location = repo.findById(id).get();
+//         location.getConsumers().forEach(consumer -> consumer.getLocations().remove(location));
+//         repo.delete(location);
     }
 
     public List<LocationDto> findLocationsByName(String city) {

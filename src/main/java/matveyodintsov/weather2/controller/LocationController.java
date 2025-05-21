@@ -30,4 +30,10 @@ public class LocationController {
         return "redirect:/";
     }
 
+    @PostMapping("/delete/{id}")
+    public String deleteLocation(@PathVariable("id") String id) {
+        locationService.deleteById(Long.parseLong(id));
+        return "redirect:/";
+    }
+
 }
